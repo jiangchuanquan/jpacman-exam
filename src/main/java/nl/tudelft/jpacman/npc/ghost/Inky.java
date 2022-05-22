@@ -87,7 +87,7 @@ public class Inky extends Ghost {
         Unit blinky = Navigation.findNearest(Blinky.class, getSquare());
         Unit player = Navigation.findNearest(Player.class, getSquare());
 
-        if (blinky == null || player == null) {
+        if (isbBoolean(blinky, player)) {
             return Optional.empty();
         }
 
@@ -105,10 +105,18 @@ public class Inky extends Ghost {
         List<Direction> path = Navigation.shortestPath(getSquare(),
             destination, this);
 
-        if (path != null && !path.isEmpty()) {
+        if (isaBoolean(path)) {
             return Optional.ofNullable(path.get(0));
         }
         return Optional.empty();
+    }
+
+    private boolean isbBoolean(Unit blinky, Unit player) {
+        return blinky == null || player == null;
+    }
+
+    private boolean isaBoolean(List<Direction> path) {
+        return path != null && !path.isEmpty();
     }
 
 

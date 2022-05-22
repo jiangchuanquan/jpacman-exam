@@ -72,15 +72,12 @@ public class LauncherSmokeTest {
 //        game.move(player, Direction.WEST);
 //        assertThat(player.getScore()).isEqualTo(10);
 
-        // try to move as far as we can
         move(game, Direction.EAST, 6);
         assertThat(player.getScore()).isEqualTo(60);
 
-        // move towards the monsters
         move(game, Direction.NORTH, 12);
         assertThat(player.getScore()).isEqualTo(180);
 
-        // no more points to earn here.
         move(game, Direction.WEST, 12);
         assertThat(player.getScore()).isEqualTo(300);
 
@@ -101,7 +98,6 @@ public class LauncherSmokeTest {
         Thread.sleep(500L);
 
         // we're close to monsters, this will get us killed.
-
         game.stop();
         assertThat(game.isInProgress()).isFalse();
     }
